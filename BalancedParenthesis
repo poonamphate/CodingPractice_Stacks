@@ -1,0 +1,50 @@
+import java.util.*;
+
+public class BalancedParenthesis{
+    public static void main(String[] args){
+        char arr[] = {'{','(', ')', '[', ']','}'};
+        System.out.println(isBalanced(arr));
+    }
+    
+    static boolean isBalanced(char[] arr){
+        if(arr == null || arr.length == 0){
+            return false;
+        }
+        Stack<Character> stack = new Stack<>();
+        for(int i = 0; i<arr.length; i++){
+            if(arr[i] == '{' || arr[i] == '(' || arr[i] == '[' ){
+                stack.push(arr[i]);
+            }
+            
+            if(arr[i] == '}' || arr[i] == ')' || arr[i] == ']'){
+                if(stack.isEmpty()){
+                    return false;
+                }
+                else{
+                    if(!findBalanced(stack.pop(), arr[i])){
+                        return false;
+                    }
+                }
+            }//eof if
+        }//eof for
+        if(stack.isEmpty()){
+            return true;
+        }
+        return false;
+    }//eof isBalanced
+    
+    static boolean findBalanced(char ch1, char ch2){
+        if(ch1 == '{' && ch2 == '}'){
+           return true; 
+        }
+        
+        if(ch1 == '[' && ch2 == ']'){
+           return true; 
+        }
+        
+        if(ch1 == '(' && ch2 == ')'){
+           return true; 
+        }
+        return false;
+    }
+}
