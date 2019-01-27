@@ -1,0 +1,35 @@
+//https://www.ideserve.co.in/learn/next-great-element-in-an-array
+/*Time Complexity is O(n) because each element is pushed 1 time and popped 1 time from the stack.
+Space Complexity is O(n)*/
+
+import java.util.Stack;
+
+class Main 
+{  
+    /* prints element and NGE pair for  
+     all elements of arr[] of size n */
+    static void printNGE(int arr[], int n) 
+    { 
+        Stack<Integer> stack = new Stack<>();
+        stack.push(arr[0]);
+        
+        for(int i = 1; i < arr.length; i++) {
+        	while(!stack.isEmpty() && arr[i] > stack.peek()) {
+        		System.out.println("Next greater element for "+stack.pop()+" is "+arr[i]);
+        	}
+        	
+        	stack.push(arr[i]);
+        }
+        while(!stack.isEmpty()) {
+        	System.out.println("Next greater element for "+stack.pop()+" is "+null);
+        }
+        
+    } 
+       
+    public static void main(String args[]) 
+    { 
+        int arr[]= {11, 13, 21, 3}; 
+        int n = arr.length; 
+        printNGE(arr, n); 
+    } 
+}  
